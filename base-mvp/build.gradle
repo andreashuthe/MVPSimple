@@ -1,0 +1,12 @@
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+sourceSets.main.java.srcDirs 'src/main/resources'
+sourceSets.main.resources.srcDirs 'src/main/resources'
+
+dependencies {
+    compile "org.projectlombok:lombok:$lombokVersion"
+    compile "com.google.guava:guava:$guavaVersion"
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: "$log4jVersion"
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: "$log4jVersion"
+}

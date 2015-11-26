@@ -1,0 +1,17 @@
+package com.base.mvp.view;
+
+import com.vaadin.ui.Component;
+
+/**
+ * Created by andreas_h on 08.11.15.
+ */
+public interface VaadinView<VE extends Enum<VE>, C extends Component> extends View<VaadinView<VE, C>> {
+
+    /**
+     * Gets view implementation.
+     *
+     * @return the view implementation
+     */
+    C getViewImplementation ();
+
+}
