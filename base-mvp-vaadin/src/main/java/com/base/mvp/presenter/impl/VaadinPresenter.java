@@ -7,19 +7,19 @@ import com.base.mvp.view.VaadinView;
 /**
  * Created by andreas_h on 08.11.15.
  */
-public abstract class VaadinPresenter<M extends VaadinModel> extends PresenterImpl<VaadinView, M> {
+public abstract class VaadinPresenter<V extends VaadinView,M extends VaadinModel> extends PresenterImpl<V, M> {
 
     /**
      *
      * @param viewVaadinViewService
      * @param modelClass
      */
-    public VaadinPresenter(VaadinViewService viewVaadinViewService, Class<M> modelClass) {
+    public VaadinPresenter(VaadinViewService<V> viewVaadinViewService, Class<M> modelClass) {
         super(viewVaadinViewService, modelClass);
     }
 
     @Override
-    public VaadinView getView() {
+    public V getView() {
         return super.getView();
     }
 

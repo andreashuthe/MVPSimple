@@ -6,7 +6,7 @@ import com.base.mvp.view.VaadinView;
 /**
  * Created by huth on 23.11.2015.
  */
-public interface VaadinViewService extends ViewService<VaadinView> {
+public interface VaadinViewService<V extends VaadinView> extends ViewService<V> {
 
     /**
      * Find view class class.
@@ -14,5 +14,5 @@ public interface VaadinViewService extends ViewService<VaadinView> {
      * @param presenter the presenter
      * @return the class
      */
-    @Override Class<VaadinView> findViewClass(Presenter presenter);
+    @Override Class<V> findViewClass(Presenter presenter);
 }
