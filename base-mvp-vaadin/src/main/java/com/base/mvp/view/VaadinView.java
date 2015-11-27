@@ -14,4 +14,5 @@ public interface VaadinView<VE extends Enum<VE>, C extends Component> extends Vi
      */
     C getViewImplementation ();
 
+    @Override void addView(Object id, VaadinView view);
 }
