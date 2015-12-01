@@ -9,7 +9,7 @@ import com.google.common.collect.Maps;
 /**
  * Created by huth on 20.11.2015.
  */
-public class ViewRegistry<VE extends Enum<VE>, V extends View<V>> {
+public class ViewRegistry<VE extends Enum<VE>, V extends View> {
 
     private final V viewRoot;
     private final EnumMap<VE, V> viewEnumMap;
@@ -63,7 +63,7 @@ public class ViewRegistry<VE extends Enum<VE>, V extends View<V>> {
             V result = null;
             while (it.hasNext() && result == null) {
                 final V view = it.next();
-                result = view.findView(id);
+                result = (V) view.findView(id);
             }
             return result;
         }

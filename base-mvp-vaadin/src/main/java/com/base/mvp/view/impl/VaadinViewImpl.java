@@ -10,11 +10,11 @@ import com.vaadin.ui.Component;
 /**
  * Created by andreas_h on 08.11.15.
  */
-public abstract class VaadinViewImpl<VE extends Enum<VE>,C extends Component> implements VaadinView<VE,C> {
+public abstract class VaadinViewImpl<VE extends Enum<VE>, C extends Component> implements View{
 
     private C baseComponent;
     private EventBus eventBus;
-    private VaadinViewRegistry<VE, C> viewRegistry;
+    private ViewRegistry viewRegistry;
 
     /**
      * Instantiates a new Vaadin view.
@@ -25,7 +25,7 @@ public abstract class VaadinViewImpl<VE extends Enum<VE>,C extends Component> im
     public VaadinViewImpl(Class<VE> viewEnumClass, Class<C> baseComponentClass) {
         try {
             this.baseComponent = (C) baseComponentClass.newInstance();
-            this.viewRegistry = new VaadinViewRegistry<VE, C>(this, viewEnumClass);
+            this.viewRegistry = new ViewRegistry(this, viewEnumClass);
         } catch (Exception e) {
             this.baseComponent = null;
         }
@@ -37,9 +37,24 @@ public abstract class VaadinViewImpl<VE extends Enum<VE>,C extends Component> im
      *
      * @return the view implementation
      */
-    @Override
     public C getViewImplementation() {
         return this.baseComponent;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Component getViewImplementation(Object id) {
+        if (id instanceof Enum){
+            final View view = viewRegistry.findView((Enum) id);
+
+            final Component component = (view instanceof VaadinView) ? ((VaadinView) view).getViewImplementation() : null;
+            return component;
+
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -69,31 +84,17 @@ public abstract class VaadinViewImpl<VE extends Enum<VE>,C extends Component> im
         return eventBus;
     }
 
-    /**
-     * Find view vaadin view.
-     *
-     * @param id the id
-     * @return the vaadin view
-     */
     @Override
-    public VaadinView findView(Object id) {
+    public View findView(Object id) {
         if (id instanceof Enum){
-            return viewRegistry.findView((VE) id);
+            return viewRegistry.findView((Enum) id);
+        } else {
+            return null;
         }
-
-        return null;
     }
 
-    /**
-     * Add view.
-     *
-     * @param id   the id
-     * @param view the view
-     */
     @Override
-    public void addView(Object id, VaadinView view) {
-        if (id instanceof Enum) {
-            viewRegistry.addView((VE) id, view);
-        }
+    public void addView(Object id, View view) {
+        viewRegistry.addView((Enum) id, view);
     }
 }
