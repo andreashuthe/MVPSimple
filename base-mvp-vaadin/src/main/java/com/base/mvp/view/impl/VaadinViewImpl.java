@@ -10,7 +10,7 @@ import com.vaadin.ui.Component;
 /**
  * Created by andreas_h on 08.11.15.
  */
-public abstract class VaadinViewImpl<VE extends Enum<VE>, C extends Component> implements View{
+public abstract class VaadinViewImpl<VE extends Enum<VE>, C extends Component> implements VaadinView{
 
     private C baseComponent;
     private EventBus eventBus;
