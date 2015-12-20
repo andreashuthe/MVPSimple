@@ -8,9 +8,9 @@ import com.base.mvp.view.View;
  */
 public interface Presenter<V extends View> {
 
-    public V getView();
+    V getView();
 
-    public void addPresenterListener(PresenterListener presenterListener);
+    void addPresenterListener(PresenterListener presenterListener);
 
-    public void removePresenterListener(PresenterListener presenterListener);
+    void removePresenterListener(PresenterListener presenterListener);
 }
