@@ -5,7 +5,7 @@ import com.google.common.eventbus.EventBus;
 /**
  * Created by andreas_h on 08.11.15.
  */
-public interface View<V extends View<V>> {
+public interface View {
 
     /**
      * Post construct.
@@ -32,7 +32,7 @@ public interface View<V extends View<V>> {
      * @param id the id
      * @return the v
      */
-    public V findView(Object id);
+    public View findView(Object id);
 
     /**
      * Add view.
@@ -40,7 +40,7 @@ public interface View<V extends View<V>> {
      * @param id   the id
      * @param view the view
      */
-    public void addView(Object id, V view);
+    public void addView(Object id, View view);
 
     /**
      * Init view components.
